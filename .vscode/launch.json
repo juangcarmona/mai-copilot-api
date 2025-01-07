@@ -1,0 +1,26 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    
+    {
+      "name": "Copilot API",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/src/mai/api.py",
+      "args": [
+        "--host",
+        "0.0.0.0",
+        "--port",
+        "8000"
+      ],
+      "console": "integratedTerminal",
+      "env": {
+        "PYTHONPATH": "${workspaceFolder}/src",
+        // "DEFAULT_GENERATOR": "codellama"
+        "DEFAULT_GENERATOR": "tinystarcoder"
+        // "DEFAULT_GENERATOR": "gpt2"
+      },
+      "justMyCode": true
+    }
+  ]
+}

@@ -1,0 +1,13 @@
+debugpy
+fastapi
+mlx_lm
+pydantic
+pytest
+pytest-cov
+pytest-dotenv
+pytest-mock
+torch
+torchvision
+transformers
+uvicorn
+triton
