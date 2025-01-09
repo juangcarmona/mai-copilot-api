@@ -1,4 +1,4 @@
-# MAI Copilot API
+# MAI Copilot API - Your AI, your rules
 
 The **MAI Copilot API** is a local-first AI-powered API for code assistance. Built with **FastAPI**, it's designed to be fast, lightweight, and extensible.
 

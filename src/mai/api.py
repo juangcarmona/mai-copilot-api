@@ -3,15 +3,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from mai.core.constants import COPILOT_API_NAME
 from mai.crosscutting.logging import get_logger
-from mai.generators.code_llama_generator import CodeLlamaGenerator
-from mai.generators.deepseek_coder_generator import DeepSeekCoderGenerator
 from mai.generators.generator_manager import GeneratorManager
-from mai.generators.gpt2_generator import GPT2Generator
-from mai.generators.qwen2_5_coder_generator import Qwen2_5CoderGenerator
-# from mai.generators.replit_coder_generator import ReplitCodeGenerator
-from mai.generators.santa_coder_generator import SantaCoderGenerator
-from mai.generators.star_coder_generator import StarCoderGenerator
-from mai.generators.tiny_star_coder_generator import TinyStarCoderGenerator
 from mai.models.generate_request import GenerateRequest
 import debugpy
 import os
@@ -22,20 +14,11 @@ logger = get_logger(COPILOT_API_NAME)
 # Initialize the manager
 generator_manager = GeneratorManager()
 
-# Register available generators
-generator_manager.register("codellama", CodeLlamaGenerator(pretrained="TheBloke/CodeLlama-7B-Python-AWQ", device="cpu"))
-generator_manager.register("gpt2", GPT2Generator(pretrained="gpt2", device="cpu"))
-generator_manager.register("tinystarcoder", TinyStarCoderGenerator())
-generator_manager.register("starcoder", StarCoderGenerator(pretrained="bigcode/starcoder", device="cpu"))
-# generator_manager.register("santacoder", SantaCoderGenerator())
-generator_manager.register("qwen",Qwen2_5CoderGenerator() )
-generator_manager.register("deepseekcoder", DeepSeekCoderGenerator(device="cpu"))
-
+generator_manager.register_all()
 
 # Load the default generator
 default_generator = generator_manager.get_default()
 default_generator.load()  
-
 
 logger.info("Model and tokenizer loaded successfully.")
 

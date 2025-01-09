@@ -5,7 +5,7 @@ from mai.crosscutting.logging import get_logger
 logger = get_logger()
 
 class DeepSeekCoderGenerator(GeneratorBase):
-    def __init__(self, pretrained: str = "deepseek-ai/deepseek-coder-6.7b-base", device: str = "cpu"):
+    def __init__(self, pretrained: str = "deepseek-ai/DeepSeek-Coder-V2-Base", device: str = "cpu"):
         """
         Generator for DeepSeek-Coder.
         """
@@ -41,25 +41,3 @@ class DeepSeekCoderGenerator(GeneratorBase):
             logger.error(f"Failed to load DeepSeek-Coder Generator: {e}")
             raise RuntimeError("Failed to initialize DeepSeek-Coder Generator.")
 
-    # def generate(self, query: str, parameters: dict = None) -> str:
-    #     """
-    #     Generate text using DeepSeek-Coder.
-    #     """
-    #     if self.tokenizer is None or self.model is None:
-    #         raise RuntimeError("Model and tokenizer must be loaded before generation.")
-
-    #     try:
-    #         # Tokenize input
-    #         input_ids = self.tokenizer.encode(query, return_tensors="pt").to(self.device)
-
-    #         # Merge default parameters with provided ones
-    #         params = {**self.default_parameters, **(parameters or {})}
-
-    #         # Generate text
-    #         output_ids = self.model.generate(input_ids, **params)
-
-    #         # Decode and return the generated text
-    #         return self.tokenizer.decode(output_ids[0], skip_special_tokens=True, clean_up_tokenization_spaces=False)
-    #     except Exception as e:
-    #         logger.error(f"Error during text generation: {e}")
-    #         raise RuntimeError("Text generation failed.")
