@@ -1,3 +1,4 @@
+accelerate
 debugpy
 fastapi
 mlx_lm
@@ -9,5 +10,5 @@ pytest-mock
 torch
 torchvision
 transformers
-uvicorn
 triton
+uvicorn

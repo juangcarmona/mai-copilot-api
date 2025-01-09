@@ -4,6 +4,7 @@ from fastapi.responses import RedirectResponse
 from mai.core.constants import COPILOT_API_NAME
 from mai.crosscutting.logging import get_logger
 from mai.generators.code_llama_generator import CodeLlamaGenerator
+from mai.generators.deepseek_coder_generator import DeepSeekCoderGenerator
 from mai.generators.generator_manager import GeneratorManager
 from mai.generators.gpt2_generator import GPT2Generator
 from mai.generators.qwen2_5_coder_generator import Qwen2_5CoderGenerator
@@ -28,10 +29,11 @@ generator_manager.register("tinystarcoder", TinyStarCoderGenerator())
 generator_manager.register("starcoder", StarCoderGenerator(pretrained="bigcode/starcoder", device="cpu"))
 # generator_manager.register("santacoder", SantaCoderGenerator())
 generator_manager.register("qwen",Qwen2_5CoderGenerator() )
+generator_manager.register("deepseekcoder", DeepSeekCoderGenerator(device="cpu"))
 
-# Load the default generator by ENV VAR
-# default_generator = generator_manager.get_default()
-default_generator = generator_manager.get("gpt2")
+
+# Load the default generator
+default_generator = generator_manager.get_default()
 default_generator.load()  
 
 
