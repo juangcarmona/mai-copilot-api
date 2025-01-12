@@ -19,7 +19,7 @@
         // "DEFAULT_GENERATOR": "codellama"
         "DEFAULT_GENERATOR": "deepseekcoder"
         // "DEFAULT_GENERATOR": "tinystarcoder"
-        // "DEFAULT_GENERATOR": "gpt2"
+        //  "DEFAULT_GENERATOR": "gpt2"
       },
       "justMyCode": true
     }

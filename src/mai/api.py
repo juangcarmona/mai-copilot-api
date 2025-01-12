@@ -80,13 +80,14 @@ async def generate_code(request: GenerateRequest):
         generated_text = default_generator.generate(inputs, parameters)
 
         # Clean and format the output
-        cleaned_text = clean_and_format_generated_text(inputs, generated_text)
+        # cleaned_text = clean_and_format_generated_text(inputs, generated_text)
 
-        logger.info(f"Generated code: {cleaned_text}")
+        logger.info(f"Generated code: ")
+        logger.info(f"{generated_text}")
 
         # Return the response
         return {
-            "generated_text": cleaned_text, 
+            "generated_text": generated_text, 
             "status": 200
         }
     
