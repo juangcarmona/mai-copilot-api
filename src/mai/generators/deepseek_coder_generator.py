@@ -1,3 +1,4 @@
+import torch
 from mai.generators.generator_base import GeneratorBase
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from mai.crosscutting.logging import get_logger
@@ -41,3 +42,20 @@ class DeepSeekCoderGenerator(GeneratorBase):
             logger.error(f"Failed to load DeepSeek-Coder Generator: {e}")
             raise RuntimeError("Failed to initialize DeepSeek-Coder Generator.")
 
+    def generate_embeddings(self, inputs: str) -> list:
+        """
+        Generate embeddings for the given input using the model.
+        """
+        try:
+            # Tokenize the input
+            input_ids = self.tokenizer(inputs, return_tensors="pt").to(self.device)
+
+            # Get the model's embeddings
+            with torch.no_grad():
+                outputs = self.model(**input_ids, output_hidden_states=True)
+
+            # Extract embeddings from the last hidden state or a specific layer
+            embeddings = outputs.hidden_states[-1].mean(dim=1).squeeze().tolist()
+            return embeddings
+        except Exception as e:
+            raise RuntimeError(f"Failed to generate embeddings: {e}")

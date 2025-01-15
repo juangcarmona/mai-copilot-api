@@ -1,17 +1,20 @@
 {
   "version": "0.2.0",
   "configurations": [
-    
     {
       "name": "Copilot API",
       "type": "debugpy",
       "request": "launch",
-      "program": "${workspaceFolder}/src/mai/api.py",
+      "program": "${workspaceFolder}/main.py",
       "args": [
-        "--host",
-        "0.0.0.0",
+        "--model",
+        "deepseekcoder",   // Replace this with the desired default model
+        "--chat-model",
+        "qwen",            // Replace this with the desired chat model (if applicable)
+        "--device",
+        "cuda",            // Specify "cpu" or "cuda"
         "--port",
-        "8000"
+        "34100"
       ],
       "console": "integratedTerminal",
       "env": {
