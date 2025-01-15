@@ -21,7 +21,6 @@ class GeneratorBase:
             "top_p": 0.9,
             "do_sample": True,
         }
-    
 
     @property
     def unsupported_parameters(self) -> set:
@@ -62,6 +61,7 @@ class GeneratorBase:
         """
         Generate text based on the query and parameters.
         """
+        logger.debug(f"Generating text for query: {query}")
         if self.tokenizer is None or self.model is None:
             raise ValueError("Model and tokenizer must be loaded before generation.")
 
@@ -79,3 +79,10 @@ class GeneratorBase:
 
         # Decode and return the generated text
         return self.tokenizer.decode(output_ids[0], skip_special_tokens=True, clean_up_tokenization_spaces=False)
+
+    def generate_embeddings(self, inputs: str) -> list:
+        """
+        Default method to generate embeddings for a given input.
+        Subclasses should override this if the model supports embedding generation.
+        """
+        raise NotImplementedError("This generator does not support embedding generation.")
